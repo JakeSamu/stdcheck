@@ -10,7 +10,7 @@ help () {
 
 defaultvalues () {
 	directory="output"
-	verbose=false
+	verbose=""
 	ports=""
 }
 
@@ -48,7 +48,7 @@ argparse () {
 flagparse () {
 if [ -z $# ]; then echo "something went wrong at flagparse"; exit 1; fi
 
-if [[ $1 == -v || $1 == -V ]]; then verbose=true; fi
+if [[ $1 == -v || $1 == -V ]]; then verbose="-v"; fi
 if [[ $1 == -q || $1 == -Q ]]; then ports="-q"; fi
 
 }
@@ -97,7 +97,7 @@ changepath () {
 
 #call stdcheck-network
 networkscan () {
-	$DIR/stdcheck-network/stdcheck-network.sh -d $directory $1 $ports
+	$DIR/stdcheck-network/stdcheck-network.sh -d $directory $1 $ports $verbose
 }
 
 #call stdcheck-web

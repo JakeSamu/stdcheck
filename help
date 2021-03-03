@@ -14,3 +14,9 @@ Flags:
 	Verbose mode
 -q, -Q
 	Use this if you want to only scan the ports 1-9999.
+
+
+Examples:
+
+	./stdcheck.sh -f ips.txt
+	./stdcheck.sh -u www.google.com
