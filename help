@@ -1,0 +1,16 @@
+
+Commands: 
+
+-f, -F
+	This parameter expects a file. This file is then used at nmap with the '-iL' option.
+-u, -U
+	This parameter expects the same input as nmap without arguments
+-d, -D
+	Save all the output in this directory. If it does not exists, it will be created. Default is the directory where you call this script from.
+
+Flags: 
+
+-v -V
+	Verbose mode
+-q, -Q
+	Use this if you want to only scan the ports 1-9999.

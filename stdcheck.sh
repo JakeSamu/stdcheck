@@ -4,13 +4,14 @@ THIS=`readlink -f "${BASH_SOURCE[0]}" 2>/dev/null||echo $0`
 DIR=`dirname "${THIS}"`
 
 help () {
-	cat help
+	cat $DIR/help
 	exit 1
 }
 
 defaultvalues () {
 	directory="output"
 	verbose=false
+	ports=""
 }
 
 #Method to check that first argument starts with -
@@ -47,7 +48,8 @@ argparse () {
 flagparse () {
 if [ -z $# ]; then echo "something went wrong at flagparse"; exit 1; fi
 
-if [[ $1 == -v ]]; then verbose=true; fi
+if [[ $1 == -v || $1 == -V ]]; then verbose=true; fi
+if [[ $1 == -q || $1 == -Q ]]; then ports="-q"; fi
 
 }
 
@@ -95,7 +97,7 @@ changepath () {
 
 #call stdcheck-network
 networkscan () {
-	$DIR/stdcheck-network/stdcheck-network.sh -d $directory $1 -qq
+	$DIR/stdcheck-network/stdcheck-network.sh -d $directory $1 $ports
 }
 
 #call stdcheck-web
@@ -126,10 +128,12 @@ main () {
 	looparg $@
 	dirformat
 	
-	if [ -n $url ]; then
+	if [ -n "$url" ]; then
 		urlinput
-	elif [ -n $file ]; then
+	elif [ -n "$file" ]; then
 		fileinput
+	else
+		help
 	fi
 }
 main $@
