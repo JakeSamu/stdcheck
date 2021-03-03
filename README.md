@@ -14,3 +14,4 @@ Even with that it might sometimes not work ... still need to learn more about su
 
 * Rename stdcheck-web and stdcheck-network to web-checker and net-stdchecker respectively.
 * Better and more user-input forwarding to both submodules.
+* Update.sh erstellen
