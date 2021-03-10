@@ -50,6 +50,7 @@ if [ -z $# ]; then echo "something went wrong at flagparse"; exit 1; fi
 
 if [[ $1 == -v || $1 == -V ]]; then verbose="-v"; fi
 if [[ $1 == -q || $1 == -Q ]]; then ports="-q"; fi
+if [[ $1 == -qq|| $1 == -QQ ]]; then ports="-qq"; fi
 
 }
 
@@ -103,9 +104,12 @@ networkscan () {
 #call stdcheck-web
 webscan () {
 	for web in $(cat $directory/$1.http ); do
-		webname=$(echo $web | cut -d "/" -f3)
-		mkdir -p $directory$webname
-		webdir=${directory}webchecker/${webname}
+		webhost=$(echo $web | cut -d "/" -f3 | cut -d ":" -f1)
+		webport=$(echo $web | cut -d "/" -f3 | cut -d ":" -f2)
+		webname="$webhost-$webport"
+		webdir="${directory}webchecker/${webname}"
+		
+		mkdir -p $webdir
 		python3 $DIR/stdcheck-web/stdcheck-web.py -dr $webdir -u $web
 	done
 }
@@ -128,7 +132,7 @@ main () {
 	looparg $@
 	dirformat
 	
-	if [ -n "$url" ]; then
+	if [ -n "$hostname" ]; then
 		urlinput
 	elif [ -n "$file" ]; then
 		fileinput
@@ -137,6 +141,7 @@ main () {
 	fi
 }
 main $@
+
 
 
 
