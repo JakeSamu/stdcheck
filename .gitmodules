@@ -1,6 +1,6 @@
-[submodule "stdcheck-web"]
-	path = stdcheck-web
-	url = git@stdcheck-web.github.com:JakeSamu/stdcheck-web.git
-[submodule "stdcheck-network"]
-	path = stdcheck-network
-	url = git@stdcheck-network.github.com:JakeSamu/stdcheck-network.git
+[submodule "netchecker"]
+	path = netchecker
+	url = https://github.com/JakeSamu/netchecker
+[submodule "webchecker"]
+	path = webchecker
+	url = https://github.com/JakeSamu/webchecker

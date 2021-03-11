@@ -98,7 +98,7 @@ changepath () {
 
 #call stdcheck-network
 networkscan () {
-	$DIR/stdcheck-network/stdcheck-network.sh -d $directory $1 $ports $verbose
+	$DIR/netchecker/netchecker.sh -d $directory $1 $ports $verbose
 }
 
 #call stdcheck-web
@@ -110,7 +110,7 @@ webscan () {
 		webdir="${directory}webchecker/${webname}"
 		
 		mkdir -p $webdir
-		python3 $DIR/stdcheck-web/stdcheck-web.py -dr $webdir -u $web
+		python3 $DIR/webchecker/webchecker.py -dr $webdir -u $web
 	done
 }
 
