@@ -7,6 +7,8 @@ Commands:
 	This parameter expects the same input as nmap without arguments
 -d, -D
 	Save all the output in this directory. If it does not exists, it will be created. Default is the directory where you call this script from.
+-n, -N
+        Use this parameter if you want to use specific nmap arguments. Everything after this parameter will be directly used for nmap input, so only use this as last parameter!
 
 Flags: 
 
@@ -14,7 +16,10 @@ Flags:
 	Verbose mode
 -q, -Q
 	Use this if you want to only scan the ports 1-9999.
-
+-qq, -QQ
+	Use this if you want to only scan the top 100 ports.
+-Pn
+        Use the nmap-option -Pn for scanning without pingscan beforehand.
 
 Examples:
 

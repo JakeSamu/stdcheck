@@ -12,6 +12,7 @@ defaultvalues () {
 	directory="output"
 	verbose=""
 	ports=""
+	flags=""
 }
 
 #Method to check that first argument starts with -
@@ -23,6 +24,15 @@ checkcommandformat () {
 	if [[ $2 == -* ]]; then
 		echo "Please check argument \"$2\", it should not be a command option."
 		help
+	fi
+}
+
+
+addflag () {
+	if [[ -z $flags ]]; then
+		flags="$1";
+	else
+		flags="$flags $1"
 	fi
 }
 
@@ -51,6 +61,9 @@ if [ -z $# ]; then echo "something went wrong at flagparse"; exit 1; fi
 if [[ $1 == -v || $1 == -V ]]; then verbose="-v"; fi
 if [[ $1 == -q || $1 == -Q ]]; then ports="-q"; fi
 if [[ $1 == -qq|| $1 == -QQ ]]; then ports="-qq"; fi
+if [[ $1 == -Pn ]]; then
+	addflag "-Pn"
+fi
 
 }
 
@@ -62,8 +75,13 @@ looparg () {
 			shift
 		else
 			if [[ $1 == -* && $2 == -* ]]; then
-				flagparse $1
-				shift
+				if [[ $1 == -n ]]; then
+					nmapoption=$@
+					shift $#
+				else
+					flagparse $1
+					shift 1
+				fi
 			else
 				argparse $1 $2
 				shift 2
@@ -98,12 +116,12 @@ changepath () {
 
 #call stdcheck-network
 networkscan () {
-	$DIR/netchecker/netchecker.sh -d $directory $1 $ports $verbose
+	$DIR/netchecker/netchecker.sh -d $directory $1 $ports $verbose $flags $nmapoption
 }
 
 #call stdcheck-web
 webscan () {
-	for web in $(cat $directory/$1.http ); do
+	for web in $(cat $directory/$1.http.ips.ports $directory/$1.https.hostnames.ports); do
 		webhost=$(echo $web | cut -d "/" -f3 | cut -d ":" -f1)
 		webport=$(echo $web | cut -d "/" -f3 | cut -d ":" -f2)
 		webname="$webhost-$webport"
