@@ -12,6 +12,9 @@ Even with that it might sometimes not work ... still need to learn more about su
 
 # Dependencies
 
+To install every dependency use:
+* ./stdcheck --install
+
 This tool is written on and for kali linux. It should work on debian based systems too.
 
 # ToDo

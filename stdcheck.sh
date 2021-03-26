@@ -8,6 +8,11 @@ help () {
 	exit 1
 }
 
+checkinstall () {
+	python3 -m pip install -r $DIR/webchecker/requirements.txt | grep -v "Requirement already satisfied: "
+	$DIR/netchecker/netchecker.sh --install
+}
+
 defaultvalues () {
 	directory="output"
 	verbose=""
@@ -61,6 +66,7 @@ if [ -z $# ]; then echo "something went wrong at flagparse"; exit 1; fi
 if [[ $1 == -v || $1 == -V ]]; then verbose="-v"; fi
 if [[ $1 == -q || $1 == -Q ]]; then ports="-q"; fi
 if [[ $1 == -qq|| $1 == -QQ ]]; then ports="-qq"; fi
+if [[ $1 == --install ]]; then checkinstall && exit; fi
 if [[ $1 == -Pn ]]; then
 	addflag "-Pn"
 fi
