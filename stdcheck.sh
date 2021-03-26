@@ -9,6 +9,7 @@ help () {
 }
 
 checkinstall () {
+	./submodupdate.sh
 	python3 -m pip install -r $DIR/webchecker/requirements.txt | grep -v "Requirement already satisfied: "
 	$DIR/netchecker/netchecker.sh --install
 }
