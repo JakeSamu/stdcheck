@@ -128,7 +128,7 @@ networkscan () {
 
 #call stdcheck-web
 webscan () {
-	for web in $(cat $directory/$1.http.ips.ports $directory/$1.https.hostnames.ports); do
+	for web in $(cat $directory$1-*/$1.https.hostnames.* $directory$1-*/$1.http.ips.*); do
 		webhost=$(echo $web | cut -d "/" -f3 | cut -d ":" -f1)
 		webport=$(echo $web | cut -d "/" -f3 | cut -d ":" -f2)
 		webname="$webhost-$webport"
