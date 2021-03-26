@@ -19,9 +19,6 @@ This tool is written on and for kali linux. It should work on debian based syste
 
 # ToDo
 
-* Rename stdcheck-web and stdcheck-network to web-checker and net-stdchecker respectively.
-* Better and more user-input forwarding to both submodules.
-* ?update.sh?
 * Add to install.sh the check, that every submodule exists
 
 # Known Bugs
