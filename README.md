@@ -19,7 +19,5 @@ This tool is written on and for kali linux. It should work on debian based syste
 
 # ToDo
 
-* Add to install.sh the check, that every submodule exists
-
 # Known Bugs
 * If the ports are shown as "tcpwrapped", they will not be seen as http-ports.
