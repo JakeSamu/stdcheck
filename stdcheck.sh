@@ -68,9 +68,8 @@ if [[ $1 == -v || $1 == -V ]]; then verbose="-v"; fi
 if [[ $1 == -q || $1 == -Q ]]; then ports="-q"; fi
 if [[ $1 == -qq|| $1 == -QQ ]]; then ports="-qq"; fi
 if [[ $1 == --install ]]; then checkinstall && exit; fi
-if [[ $1 == -Pn ]]; then
-	addflag "-Pn"
-fi
+if [[ $1 == -Pn ]]; then addflag "-Pn"; fi
+if [[ $1 == -A ]]; then addflag "-A"; fi
 
 }
 
