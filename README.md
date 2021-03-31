@@ -18,6 +18,10 @@ To install every dependency use:
 This tool is written on and for kali linux. It should work on debian based systems too.
 
 # ToDo
+* Change stdcheck and netchecker, s.th. they both use the same script-base for the common functions.
+* Option redirect for websites
 
-# Known Bugs
+# Known Bugs / Why something does not work correctly
 * If the ports are shown as "tcpwrapped", they will not be seen as http-ports.
+* TLS-Scan via testssl does not try different start_tls modes
+* Currently problems with ips that are up and exists but cannot be called due to problems like bad signature of tls-certificate.
