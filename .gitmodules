@@ -1,6 +1,6 @@
-[submodule "netchecker"]
-	path = netchecker
-	url = https://github.com/JakeSamu/netchecker
 [submodule "webchecker"]
 	path = webchecker
 	url = https://github.com/JakeSamu/webchecker
+[submodule "netchecker"]
+	path = netchecker
+	url = https://github.com/JakeSamu/netchecker
