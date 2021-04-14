@@ -10,6 +10,18 @@ help () {
 
 checkinstall () {
 	./submodupdate.sh
+	
+	if (( $(dpkg -l "python3-pip" | wc -l | cut -d " " -f1) == 0 )); then
+                echo "You need to have $1 installed to use this script."
+                read -p "Do you want to install it now? (y/n)" -n 1 -r
+                if [[ $REPLY =~ ^[Yy]$ ]]; then
+                        sudo apt install python3-pip
+                else
+                        echo "Stopping script. You cannot use netchecker without $1."
+                        exit
+                fi
+        fi
+
 	python3 -m pip install -r $DIR/webchecker/requirements.txt | grep -v "Requirement already satisfied: "
 	$DIR/netchecker/netchecker.sh --install
 }
